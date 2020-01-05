@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+	<script src="calculator.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+	<script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<form id="unit-converter">
+		<ul>
+			<li class="active">Length</li>
+			<li>Temparature</li>
+			<li>Area</li>
+			<li>Volume</li>
+			<li>Weight</li>
+		</ul>
+		<div class="box">
+			<div class="row">
+				<div class="col-md-6 col-sm-12">
+					<b>From</b>
+					<input type="number" name="from-val" value="0">
+					<div class="optionList" id="unit-from"></div>
+				</div>
+				<div class="col-md-6 col-sm-12">
+					<b style="margin-top: 10px">To</b>
+					<input readonly type="number" name="to-val" value="0">
+					<div class="optionList" id="unit-to"></div>
+					
+				</div>
+			</div>
+			<div class="row ">
+				<div class="col-md-6 col-sm-12 text-center">
+					<input type="button" name="convert" value="CONVERT" class="col-6">
+				</div>
+				<div class="col-md-6 col-sm-12">
+					<div class="result col-12 text-center"> <b style="color: red;">Result:</b> <span id=result-box>0 Meter = 0 Meter</span></div>
+				</div>
+			</div>
+			
+		</div>
+	</form>
+</body>
+</html>

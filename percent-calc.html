@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+	<script src="calculator.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+	<script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<form class="box" action="" id="percentCalc" name="percentCalc">
+		<div class="row">
+			<div class="col-md-6 col-sm-12 selection">
+				<div><b>Calculation Type</b></div>
+				<select id="calc-type">
+					<option value="1">What is X% of Y</option>
+					<option value="2">X is what percent of Y</option>
+					<option value="3">What % is the increase/decrease from X to Y</option>
+				</select>
+			</div>
+			<div class="col-md-6 col-sm-12">
+				<div id="text-top" style="margin-top: 5px;"></div>
+				<div id="x-val" class="input-group">
+					<input class="" type="number" name="x-val"/>
+				</div>
+				<div id=text-mid></div>
+				<div id="y-val" class="input-group added">
+					<input class="" type="number" name="y-val"/>
+				</div>
+				
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6 col-sm-12 text-md-left text-sm-center">
+				<div id="pc-answer"></div>
+			</div>
+			<div class="col-md-6 col-sm-12 text-md-right text-sm-center">
+				<input class="col-6" type="button" name="calculate" value="CALCULATE">
+			</div>
+		</div>
+	</form>
+</body>
+</html>

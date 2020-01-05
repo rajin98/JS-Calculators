@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+	<script src="calculator.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+	<script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div id="calculatorBlock" >         
+		<div itemscope itemtype="https://schema.org/SoftwareApplication">
+			<link itemprop="applicationCategory" href="https://schema.org/WebApplication"/>
+			<meta itemprop="operatingSystem" content="Browser required with JavaScript support">		
+			<div id="calculatorWrap"> 
+				<form action="" id="calculator" name="calculator" class="">
+					<div class="row">
+						<div class="col-12"><input type="text" class="window" name="display" id="display" value="" readonly /></div>
+					</div>
+					<div class="row no-gutters">
+						<div class="col"><input type="button" class="button" name="mem_clear" value="mc" title="Clear the memory."/></div>
+						<div class="col"><input type="button" class="button" name="mem_plus" value="m+" title="Add the displayed value to the memory."/></div>
+						<div class="col"><input type="button" class="button" name="mem_minus" value="m-" title="Subtract the displayed value from the memory."/></div>
+						<div class="col"><input type="button" class="button" name="mem_recall" value="mr" title="MR Recall the value stored in memory and display it"/></div>
+					</div>
+					<div class="row no-gutters">
+						<div class="col"><input type="button" class="button" name="clearButton" value="AC" title="CE is Clear Entry; AC is Clear All; Press once to clear current entry, press twice to clear all."/></div>
+						<div class="col"><input type="button" class="button" name="root2" value="&radic;x" title="Calculate the square root of the displayed value."/></div>
+						<div class="col"><input type="button" class="button" name="percentButton" value="%" title="Enter displayed value as a percentage and convert to its decimal equivalent."/></div>
+						<div class="col"><input type="button" class="button operator" name="divide" value="&divide;" title="Divide (press /)"/></div>
+					</div>
+					<div class="row no-gutters">
+						<div class="col"><input type="button" class="button number" name="seven" value="7"/></div>
+						<div class="col"><input type="button" class="button number" name="eight" value="8" /></div>
+						<div class="col"><input type="button" class="button number" name="nine" value="9" /></div>
+						<div class="col"><input type="button" class="button operator" name="multiply" value="&times;" title="Multiply (press &times;)"/></div>
+					</div>
+					<div class="row no-gutters">
+						<div class="col-3"><input type="button" class="button number" name="four" value="4" /></div>
+						<div class="col-3"><input type="button" class="button number" name="five" value="5" /></div>
+						<div class="col-3"><input type="button" class="button number" name="six" value="6" /></div>
+						<div class="col-3"><input type="button" class="button operator" name="subtract" value="&minus;" title="Subtract (press -)"/></div>
+					</div>
+					<div class="row no-gutters">
+						<div class="col-3"><input type="button" class="button number" name="one" value="1"/></div>
+						<div class="col-3"><input type="button" class="button number" name="two" value="2" /></div>
+						<div class="col-3"><input type="button" class="button number" name="three" value="3" /></div>
+						<div class="col-3"><input type="button" class="button operator" name="add" value="&#43;" title="Add (press +)"/></div>
+					</div>
+					<div class="row no-gutters">
+						<div class="col-3"><input type="button" class="button number" name="zero" value="0" /></div>
+						<div class="col-3"><input type="button" class="button number" name="decimal" value="." /></div>
+						<div class="col-3"><input type="button" class="button" name="negate" value="+/-" title="Negate the displayed value"/></div>
+						<div class="col-3"><input type="button" class="button operator" name="calculate" value="&#61;" title="Execute calculation (press =)"/></div>
+					</div>
+					<div class="row no-gutters">
+						<div class="col-3"><input type="button" class="button" name="piConst" value="&pi;" title="Display the value of Pi"/></div>
+						<div class="col-3"><input type="button" class="button" name="squareVal" value="x&sup2;" title="Square the displayed value"/></div>
+						<div class="col-3"><input type="button" class="button" name="round2" value="R2" title="Round display to 2 decimal places"/></div>
+						<div class="col-3"><input type="button" class="button" name="round0" value="R0" title="Round display to 0 decimal places"/></div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
