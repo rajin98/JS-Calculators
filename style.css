@@ -1,50 +1,31 @@
 body {
 	font-family: "Open Sans", sans-serif;
 	font-size: 16px;
-/*	width: 50%;
-*/	margin: 0 auto;
-	min-width: 500px;
+    margin: 0 auto;
     overflow-x: hidden;
 }
-p {
-	padding: 3px;
-}
+p {padding: 3px;}
 
-.align-center{
-    text-align: center;
-}
+.align-center{text-align: center;}
 
 input[type=number], select {
     margin-bottom: 5px;
     width: 100%;
     box-sizing: border-box;
+    /* Border color of the input boxes and dropdown menus*/
     border: 1px solid #d9dbdc;
     border-radius: 0px;
+    /* Background color of the input boxes and dropdown menus*/
     background-color: white;
+    /* Text color of the input boxes and dropdown menus*/
+    color: #333;
     padding: 12px 14px;
-}
-.container {
-    border-radius: 5px;
-    background-color: #f2f2f2;
-    padding: 20px;
-}
-
-.col-25 {
-    float: left;
-    width: 25%;
-    margin-top: 6px;
-}
-
-.col-50 {
-    float: left;
-    width: 50%;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-top: 6px;
 }
 
 input[type=button] {
+    /* Background color of the buttons*/
     background-color: #03a196;
+    /* Text color of the buttons*/
     color: white;
     margin-top: 5px;
     margin-bottom: 5px;
@@ -64,22 +45,21 @@ input[type=button] {
 }
 
 input[type=button]:hover {
+    /* Background color of the buttons during mouse hover*/
     background-color: #04736b;
 }
 
-.active {color: #fff; background-color: #555;}
-
-.content {
-	 padding: 0 18px;
-	 max-height: 0;
-	 overflow: hidden;
-	 transition: max-height 0.2s ease-out;
-	 background-color: #f1f1f1;
-}
+.active {
+    /* Text color of the active tab */
+    color: #fff; 
+    /* Background color of the active tab */
+    background-color: #555;}
 
 #shrinkage-calculator.box, #percentCalc.box {
     padding: 20px;
+    /* Background color of bounding box of the first two calculators */
     background-color: #fff;
+    /* Border color of bounding box of the first two calculators */
     border: 1px solid rgb(206, 206, 206);
 }
 
@@ -117,9 +97,12 @@ input[type=button]:hover {
     font-size: 14px;
     font-weight: normal;
     line-height: 1;
+    /* Text color of % symbol */
     color: #555;
     text-align: center;
+    /* Background color of % symbol */
     background-color: #eee;
+    /* Border color of % symbol */
     border: 1px solid #ccc;
     border-left: none;
 }
@@ -135,6 +118,7 @@ input[type=button]:hover {
 
 #unit-converter .optionList {
     width: 100%;
+    /* Border color of the option table in unit converter */
     border: 1px solid rgb(206, 206, 206);
     height: 250px;
     overflow-y: scroll;
@@ -142,17 +126,23 @@ input[type=button]:hover {
 }
 
 #unit-converter .reset, #percentCalc .reset{
+    /* Background color of clear buttons */
     background-color: #333;
+    /* Text color of clear buttons */
     color:#fff;
 }
 
 #unit-converter .reset:hover, #percentCalc .reset:hover{
+    /* Background color of clear buttons during mouse hover */
     background-color: #555;
 }
 
 #unit-converter .optionList > input {
+    /* Background color color of option table items */
+    background-color: #fff;
     width: 100%;
     display: block;
+    /* Text color color of option table items buttons */
     color: #333;
     margin: 0;
     text-align: left;
@@ -161,6 +151,7 @@ input[type=button]:hover {
 }
 
 #unit-converter .optionList > input:hover {
+    /* Background color of option table items during mouse hover */
     background-color: #ddd; 
 }
 
@@ -169,6 +160,7 @@ input[type=button]:hover {
 }
 
 #unit-converter .optionList > input.active {
+    /* Background color of the selected option table item */
     background-color: #ccc; 
 }
 
@@ -236,23 +228,9 @@ input[type=button]:hover {
 	/*outline: 1px solid #000;*/
 }
 
-#calculator .btn {
-	display: none;
-}
-
-/*#calculator input.memory {
-	line-height: 2em;
-	border: 1px solid #999;
-	font-size: 100%;
-	margin-top: 4px;
-	width: 1em;
-}
-*/
-
-
 #calculator input.window {
     width: 100vw;
-    height: 25vw;
+    height: 20vw;
     padding-right: 5vw;
     padding-left: 5vw;
     line-height: 50%;
@@ -267,7 +245,7 @@ input[type=button]:hover {
 #calculator input.button {
     width: 100%;
     padding: 0;
-    height: 25vw;
+    height: 15.5vw;
     position: relative;
     line-height: 50%;
     text-align: center;

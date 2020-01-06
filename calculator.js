@@ -246,8 +246,10 @@ function calculatorSetup() {
 		else if(key == 106) enterOperator('\u00D7');
 		else if(key == 111) enterOperator('\u00F7');
 		else if(key == 187 || key == 13) enterOperator('\u003D');
-		else if(key == 8) displayClear();
+		else if(key == 8) backspaceEntry();
+		else if(key == 46) displayClear();
 		else if(key == 53) calWidget.find("input[type='button'][name='percentButton']").click();
+		else if(key == 110) enterValue(".");
 	})
 
 	var display = calWidget.find("#display");
@@ -265,16 +267,27 @@ function calculatorSetup() {
 		else if(c.attr("name") == 'piConst') {buffer = "" + Math.PI; updateDisplay(buffer);}
 		else if(c.attr("name") == 'negate') {if(display.val()) buffer = "" + parseFloat(display.val()) * -1; updateDisplay(buffer);}
 		else if(c.attr("name") == 'squareVal') {if(display.val()) buffer = "" + Math.pow(parseFloat(display.val()), 2); updateDisplay(buffer);}
-		else if(c.attr("name") == 'round0') {if(display.val()) buffer = "" + Math.round(parseFloat(display.val())); updateDisplay(buffer);}
-		else if(c.attr("name") == 'round2') {if(display.val()) buffer = "" + Math.round(parseFloat(display.val())*100)/100; updateDisplay(buffer);};
+		else if(c.attr("name") == 'backspaceBtn') {backspaceEntry();}
+		else if(c.attr("name") == 'oneoverx') {if(display.val()) {buffer = "" + 1/parseFloat(display.val()); updateDisplay(buffer);}};
 	})
 
+	function backspaceEntry(){
+		console.log(buffer);
+		if(!(buffer == "0" || buffer == "") && !isExecuted) {
+			if(buffer[buffer.length-1] == "." ) isDecimal = 0;
+			buffer = buffer.slice(0, buffer.length-1);
+			if(buffer == "") buffer = "0";
+			updateDisplay(buffer)
+		};
+	}
+
 	function enterValue(c){
-		if(isExecuted) {isExecuted = 0;}
+		if(isExecuted) {isExecuted = 0; isDecimal = 0;}
 		if(!("NaN" == display.val() || isConstant || "." == c && isDecimal || buffer.length > 15)){
 			calWidget.find("input[name='clearButton']").val("CE");
-			if(!(buffer == "0" && c == "0")) {
-				(c == "." && buffer == "") ? (buffer = "0.", isDecimal = 1) : buffer += c;}
+			if(buffer == "0") buffer = '';
+			if(c == ".") {isDecimal = 1; if(buffer=='') buffer = "0";}
+			buffer += c;
 			updateDisplay(buffer);
 		}
 	}
@@ -302,13 +315,13 @@ function calculatorSetup() {
 	}
 
 	function displayClear(){
-		if(calWidget.find("input[name='clearButton']").val() == "CE") {buffer = ''; 
+		if(calWidget.find("input[name='clearButton']").val() == "CE") {buffer = '0'; 
 			calWidget.find("input[name='clearButton']").val("AC")}
 		else {
-			value = memory = isOperator = isDecimal = isConstant = isExecuted = 0
-			operator = buffer = '';
+			value = memory = isOperator = isDecimal = isConstant = isExecuted = 0;
+			operator = ''; buffer = '0';
 		}
-		updateDisplay('');
+		updateDisplay(buffer);
 	}
 }
 
