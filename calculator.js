@@ -48,6 +48,8 @@ function unitConvSetup(){
 	}
 
 	var form_c = jQuery("#unit-converter");
+	var isMobile = 0;
+
 	var optionClass = '';
 	var menu = form_c.find("ul");
 	var last_field = 'from-val';
@@ -55,10 +57,19 @@ function unitConvSetup(){
 		menu.find("li").removeClass("active");
 		jQuery(this).addClass("active");
 		optionClass = jQuery(this).text();
+		if(optionClass=="Temp") optionClass = "Temparature"
 		loadOptions();
-		// doConversion();
 	});
 	menu.find("li").eq(0).click();
+	jQuery(window).resize(function(){
+		var width = jQuery(window).width();
+		if(width > 576 && isMobile) {isMobile = 0; changeLayout(); loadOptions(); doConversion();}
+		if(width <= 576 && !isMobile) {isMobile = 1; changeLayout(); loadOptions(); doConversion();}
+	});
+
+	if(jQuery(window).width() <= 576) isMobile = 1;
+	changeLayout();
+	loadOptions();
 
 	form_c.keyup(function(e){
 		var key = e.which || e.keyCode;
@@ -66,43 +77,89 @@ function unitConvSetup(){
 	})
 
 	form_c.find('input[name="convert"]').click(function(){doConversion();})
+	
+	form_c.find('input[name="reset"]').click(function(){
+		form_c.find('input[type="number"]').val('');
+		loadOptions();
+		if(!isMobile) form_c.find('#large').find("#result-box").empty();
+		else form_c.find('#small').find("#result-box").empty();
+	});
 
 	form_c.find('.optionList').keyup(function(e){
 		var key = e.which || e.keyCode;
 		if(key == 38) jQuery(this).find('.active').prev().click();
 		else if(key == 40) jQuery(this).find('.active').next().click();
-	})
+	});
+
+	function changeLayout(){
+		if(!isMobile){
+			form_c.find('ul li:eq(1)').text('Temparature');
+			form_c.find('#small').hide();
+			form_c.find('#large').show();
+		} else {
+			form_c.find('ul li:eq(1)').text('Temp');
+			form_c.find('#small').show();
+			form_c.find('#large').hide();
+		}
+	}
 
 	function loadOptions(){
-		var form_c = jQuery("#unit-converter");
-		form_c.find('#unit-from').empty();
-		form_c.find('#unit-to').empty();
-		for (var key in unitDict[optionClass]) {
-			form_c.find('.optionList').append("<input type='button' readonly name='"+key+"' value='"+key+"'>");
-			form_c.find('.optionList').find(":first-child").addClass("active");
-			form_c.find('.optionList').find("input").click(function(){
-				jQuery(this).addClass("active");
-				jQuery(this).siblings().removeClass("active");
-			})
+		form_c.find('#unit-from, #unit-to').empty();
+		if(isMobile) {
+			for (var key in unitDict[optionClass]) {
+				form_c.find("#small").find('#unit-from, #unit-to').append("<option value='"+key+"'>"+key+"</option>");
+			}
+		} else {
+			for (var key in unitDict[optionClass]) {
+				form_c.find('.optionList').append("<input type='button' readonly name='"+key+"' value='"+key+"'>");
+				form_c.find('.optionList').find(":first-child").addClass("active");
+				form_c.find('.optionList').find("input").click(function(){
+					jQuery(this).addClass("active");
+					jQuery(this).siblings().removeClass("active");
+				});
+			}
 		}
+		
 	}
 	function doConversion(){
 		var subDict = unitDict[optionClass];
 		var form_c = jQuery("#unit-converter");
-		var val = form_c.find("input[name='"+ last_field +"']").val();
-		var unit_from = form_c.find('#unit-from input.active').attr('name');
-		var unit_to = form_c.find('#unit-to input.active').attr('name');
-		form_c.find('#unit-to input').each(function(){
-			var r = getval(val, subDict[unit_from], subDict[jQuery(this).attr('name')]);
-			jQuery(this).val(jQuery(this).attr('name') + ' (' + parseNum(r) + ')');
-		});
-		if(last_field == "from-val"){
-			val = getval(val, subDict[unit_from], subDict[unit_to]);
-			form_c.find("input[name='to-val']").val(parseFloat(Number.parseFloat(val).toFixed(10)));
 
-		} 
-		var result = form_c.find("input[name='from-val']").val() + " " + unit_from + " = " + form_c.find("input[name='to-val']").val() + " " + unit_to;
-		form_c.find("#result-box").text(result);
+		if(isMobile){
+			var l = form_c.find('#small');
+			var val = l.find("input[name='"+ last_field +"']").val();
+			if(val == '') return;
+			var unit_from = l.find('#unit-from').val();
+			var unit_to = l.find('#unit-to').val();
+			console.log(unit_to);
+			l.find('#unit-to option').each(function(){
+				var r = getval(val, subDict[unit_from], subDict[jQuery(this).val()]);
+				jQuery(this).text(jQuery(this).val() + ' (' + parseNum(r) + ')');
+			});
+			if(last_field == "from-val"){
+				val = getval(val, subDict[unit_from], subDict[unit_to]);
+			} 
+			var result = "<b style='color: red;'>Result:</b> " + l.find("input[name='from-val']").val() + " " + unit_from + " = " + parseNum(val) + " " + unit_to;
+			l.find("#result-box").html(result);
+		} else {
+			var l = form_c.find('#large');
+			var val = l.find("input[name='"+ last_field +"']").val();
+			if(val == '') return;
+			var unit_from = l.find('#unit-from input.active').attr('name');
+			var unit_to = l.find('#unit-to input.active').attr('name');
+			l.find('#unit-to input').each(function(){
+				var r = getval(val, subDict[unit_from], subDict[jQuery(this).attr('name')]);
+				jQuery(this).val(jQuery(this).attr('name') + ' (' + parseNum(r) + ')');
+			});
+			if(last_field == "from-val"){
+				val = getval(val, subDict[unit_from], subDict[unit_to]);
+				l.find("input[name='to-val']").val(parseNum(val));
+
+			} 
+			var result = "<b style='color: red;'>Result:</b> " + l.find("input[name='from-val']").val() + " " + unit_from + " = " + l.find("input[name='to-val']").val() + " " + unit_to;
+			l.find("#result-box").html(result);
+		}
+		
 	}
 
 	function getval(retval, base1, base2) {
@@ -260,6 +317,12 @@ function percentCalcSetup() {
 	loadForm();
 	form_p.find('select').change(function(){loadForm();})
 
+	form_p.find("input[name=reset]").click(function(){
+		form_p.find("input[name='x-val']").val('');
+		form_p.find("input[name='y-val']").val('');
+		form_p.find("#pc-answer").empty();
+	})
+
 	form_p.find('input[name="calculate"]').click(function(){
 		if(type == "1") type1();
 		if(type == "2") type2();
@@ -286,7 +349,7 @@ function percentCalcSetup() {
 		} else {
 			form_p.find("input[name='x-val']").parent().addClass("added");
 			form_p.find("input[name='x-val']").parent().find("span").remove();
-			form_p.find("#text-top").html("<b>What is the % increase/decrease from</b>");
+			form_p.find("#text-top").html("<b>What is the % increase/de&shy;crease from</b>");
 			form_p.find("#text-mid").html("<b>to</b>");
 		}
 	}
@@ -296,7 +359,7 @@ function percentCalcSetup() {
 		var y = form_p.find("input[name='y-val']").val();
 		var result = y * x / 100;
 		form_p.find("#pc-answer").empty();
-		form_p.find("#pc-answer").html("<b>Answer: " + result + "</b>");
+		form_p.find("#pc-answer").html("<b style='color:red;'>Answer: </b>" + result);
 	}
 
 	function type2(){
@@ -304,7 +367,7 @@ function percentCalcSetup() {
 		var y = form_p.find("input[name='y-val']").val();
 		var result = (y == 0) ? 0 : x / y * 100;
 		form_p.find("#pc-answer").empty();
-		form_p.find("#pc-answer").html("<b>Answer: " + result + "%</b>");
+		form_p.find("#pc-answer").html("<b style='color:red;'>Answer: </b>" + result);
 	}
 
 	function type3(){
@@ -313,6 +376,6 @@ function percentCalcSetup() {
 		var result = (x == 0) ? 0 : (y - x) / x * 100;
 		(result<0) ? (result*=-1, s = 'decrease') : s='increase'
 		form_p.find("#pc-answer").empty();
-		form_p.find("#pc-answer").html("<b>Answer: " + result + "% " + s + "</b>");
+		form_p.find("#pc-answer").html("<b style='color:red;'>Answer: </b>" + result + "% " + s + "</b>");
 	}
 }

@@ -21,7 +21,7 @@ input[type=number], select {
     border: 1px solid #d9dbdc;
     border-radius: 0px;
     background-color: white;
-    padding: 8px 14px 8px;
+    padding: 12px 14px;
 }
 .container {
     border-radius: 5px;
@@ -48,9 +48,19 @@ input[type=button] {
     color: white;
     margin-top: 5px;
     margin-bottom: 5px;
-    padding: 12px 20px;
+    padding: 12px 0;
     border: none;
     cursor: pointer;
+}
+
+@media only screen and (max-width: 576px) {
+    input[type=button] {
+        padding: 8px 0;
+        font-size: 1em;
+    }
+    input[type=number], select{
+        padding: 6px 10px 6px;`
+    }
 }
 
 input[type=button]:hover {
@@ -118,12 +128,26 @@ input[type=button]:hover {
     position: relative;
 }
 
+#pc-answer{
+    margin: 5px;
+    font-size: 1.1em;
+}
+
 #unit-converter .optionList {
     width: 100%;
     border: 1px solid rgb(206, 206, 206);
     height: 250px;
     overflow-y: scroll;
     overflow-x: hidden;
+}
+
+#unit-converter .reset, #percentCalc .reset{
+    background-color: #333;
+    color:#fff;
+}
+
+#unit-converter .reset:hover, #percentCalc .reset:hover{
+    background-color: #555;
 }
 
 #unit-converter .optionList > input {
@@ -173,7 +197,7 @@ input[type=button]:hover {
 }
 
 #unit-converter > ul > li {
-    margin: 0 0 0 -6px;
+    margin: 0 0 0 0;
     border: 1px solid rgb(206, 206, 206);
     background-color: rgb(224, 224, 224);
     color: #333;
@@ -199,7 +223,7 @@ input[type=button]:hover {
     text-align: center;
 }
 
-@media only screen and (max-width: 600px){
+@media only screen and (max-width: 576px){
 	body{
 		width: 100%;
 		min-width: initial;
