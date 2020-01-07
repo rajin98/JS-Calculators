@@ -176,103 +176,72 @@ function unitConvSetup(){
 		return retval;
 	}
 
-	function parseNum(valToBeFormated){
-		var gniTotalDigits = 12;
-		var gniPareSize = 12;
-		var valStr = "" + valToBeFormated;
-		if (valStr.indexOf("N")>=0 || (valToBeFormated == 2*valToBeFormated && valToBeFormated == 1+valToBeFormated)) return "Error ";
-		var i = valStr.indexOf("e")
-		if (i>=0){
-			var expStr = valStr.substring(i+1,valStr.length);
-			if (i>11) i=11;  // max 11 digits
-			valStr = valStr.substring(0,i);
-			if (valStr.indexOf(".")<0){
-				valStr += ".";
-			}else{
-				// remove trailing zeros
-				j = valStr.length-1;
-				while (j>=0 && valStr.charAt(j)=="0") --j;
-				valStr = valStr.substring(0,j+1);
-			}
-			valStr += "E" + expStr;
-		}else{
-			var valNeg = false;
-			if (valToBeFormated < 0){
-				valToBeFormated = -valToBeFormated;
-				valNeg = true;
-			}
-			var valInt = Math.floor(valToBeFormated);
-			var valFrac = valToBeFormated - valInt;
-			var prec = gniTotalDigits - (""+valInt).length - 1;	// how many digits available after period
-
-			var mult = " 1000000000000000000".substring(1,prec+2);
-			if ((mult=="")||(mult==" ")){
-				mult = 1;
-			}else{
-				mult = parseInt(mult);
-			}
-			var frac = Math.floor(valFrac * mult + 0.5);
-			valInt = Math.floor(Math.floor(valToBeFormated * mult + .5) / mult);
-			if (valNeg)
-				valStr = "-" + valInt;
-			else
-				valStr = "" + valInt;
-			var fracStr = "00000000000000"+frac;
-			fracStr = fracStr.substring(fracStr.length-prec, fracStr.length);
-			i = fracStr.length-1;
-
-			// remove trailing zeros unless fixed during entry.
-			while (i>=0 && fracStr.charAt(i)=="0") --i;
-			fracStr = fracStr.substring(0,i+1);
-			if (i>=0) valStr += "." + fracStr;
-		}
-		return valStr;
-	}
 }
 
 function calculatorSetup() {
-	var isNumber = 0, isDecimal = 0, isOperator = 0, isConstant = 0, 
-	isExecuted = 0, buffer = "", memory = 0; operator = '', value = 0;
+	var isNumber = 0, isDecimal = 0, isOperator = 0, isConstant = 0, isMobile = 0, calWidget = '';
+	isExecuted = 0, buffer = "0", memory = 0; operator = '', value = 0, display = '';
 	
-	var calWidget = jQuery("#calculatorBlock").find("#calculatorWrap");
+	if(jQuery(window).width() <= 576) isMobile = 1;
+	changeLayout();
 
-	calWidget.keypress(function(e){var key = e.which || e.keyCode;if(key == 13) e.preventDefault();})
+	jQuery(window).resize(function(){
+		var width = jQuery(window).width();
+		if(width > 576 && isMobile) {isMobile = 0; changeLayout();}
+		if(width <= 576 && !isMobile) {isMobile = 1; changeLayout();}
+	});
 
-	calWidget.keyup(function(e){
-		var key = e.which || e.keyCode;
-		if(key > 95  && key < 106) enterValue(""+key-96);
-		else if(key == 107) enterOperator('+');
-		else if(key == 109) enterOperator('\u2212');
-		else if(key == 106) enterOperator('\u00D7');
-		else if(key == 111) enterOperator('\u00F7');
-		else if(key == 187 || key == 13) enterOperator('\u003D');
-		else if(key == 8) backspaceEntry();
-		else if(key == 46) displayClear();
-		else if(key == 53) calWidget.find("input[type='button'][name='percentButton']").click();
-		else if(key == 110) enterValue(".");
-	})
+	function changeLayout(){
+		if(display) buffer = display.val();
+		if(calWidget) {calWidget.off();calWidget.find("input[type='button']").off();}
+		
+		if(!isMobile){
+			jQuery("#calculatorBlock").find('.calc-small').hide();
+			jQuery("#calculatorBlock").find('.calc-large').show();
+		} else {
+			jQuery("#calculatorBlock").find('.calc-small').show();
+			jQuery("#calculatorBlock").find('.calc-large').hide();
+		}
+		calWidget = jQuery("#calculatorBlock").find(".calculatorWrap:visible");
+		calWidget.keypress(function(e){var key = e.which || e.keyCode;if(key == 13) e.preventDefault();})
 
-	var display = calWidget.find("#display");
-	calWidget.find("input[type='button']").click(function(){
-		var c = jQuery(this);
-		if(c.hasClass("number")) enterValue(c.val());
-		else if(c.hasClass("operator")) enterOperator(c.val());
-		else if(c.attr("name") == 'clearButton') displayClear();
-		else if(c.attr("name") == 'mem_clear') memory = 0;
-		else if(c.attr("name") == 'mem_plus') {if(display.val()) memory += parseFloat(display.val());}
-		else if(c.attr("name") == 'mem_minus') {if(display.val()) memory -= parseFloat(display.val());}
-		else if(c.attr("name") == 'mem_recall') {buffer = memory; display.val(memory);}
-		else if(c.attr("name") == 'percentButton') {if(display.val()) buffer = "" + parseFloat(display.val())/100; updateDisplay(buffer);}
-		else if(c.attr("name") == 'root2') {if(display.val()) buffer = "" + Math.sqrt(parseFloat(display.val())); updateDisplay(buffer);}
-		else if(c.attr("name") == 'piConst') {buffer = "" + Math.PI; updateDisplay(buffer);}
-		else if(c.attr("name") == 'negate') {if(display.val()) buffer = "" + parseFloat(display.val()) * -1; updateDisplay(buffer);}
-		else if(c.attr("name") == 'squareVal') {if(display.val()) buffer = "" + Math.pow(parseFloat(display.val()), 2); updateDisplay(buffer);}
-		else if(c.attr("name") == 'backspaceBtn') {backspaceEntry();}
-		else if(c.attr("name") == 'oneoverx') {if(display.val()) {buffer = "" + 1/parseFloat(display.val()); updateDisplay(buffer);}};
-	})
+		calWidget.keyup(function(e){
+			var key = e.which || e.keyCode;
+			if(key > 95  && key < 106) calWidget.find("input[value='" + (key-96) + "']").click();
+			else if(key == 107) calWidget.find("input[name='add']").click();
+			else if(key == 109) calWidget.find("input[name='subtract']").click();
+			else if(key == 106) calWidget.find("input[name='multiply']").click();
+			else if(key == 111) calWidget.find("input[name='divide']").click();
+			else if(key == 187 || key == 13) calWidget.find("input[name='calculate']").click();
+			else if(key == 8) calWidget.find("input[name='backspaceBtn']").click();
+			else if(key == 46) calWidget.find("input[name='clearButton']").click();
+			else if(key == 53) calWidget.find("input[name='percentButton']").click();
+			else if(key == 110) calWidget.find("input[value='.']").click();;
+		})
+
+		display = calWidget.find("#display");
+		updateDisplay(buffer);
+		calWidget.find("input[type='button']").click(function(){
+			var c = jQuery(this);
+			c.focus();
+			if(c.hasClass("number")) enterValue(c.val());
+			else if(c.hasClass("operator")) enterOperator(c.val());
+			else if(c.attr("name") == 'clearButton') displayClear();
+			else if(c.attr("name") == 'mem_clear') memory = 0;
+			else if(c.attr("name") == 'mem_plus') {if(display.val()) memory += parseFloat(display.val());}
+			else if(c.attr("name") == 'mem_minus') {if(display.val()) memory -= parseFloat(display.val());}
+			else if(c.attr("name") == 'mem_recall') {buffer = memory; display.val(memory);}
+			else if(c.attr("name") == 'percentButton') {if(display.val()) buffer = "" + parseFloat(display.val())/100; updateDisplay(buffer);}
+			else if(c.attr("name") == 'root2') {if(display.val()) buffer = "" + Math.sqrt(parseFloat(display.val())); updateDisplay(buffer);}
+			else if(c.attr("name") == 'piConst') {buffer = "" + Math.PI; updateDisplay(buffer);}
+			else if(c.attr("name") == 'negate') {if(display.val()) buffer = "" + parseFloat(display.val()) * -1; updateDisplay(buffer);}
+			else if(c.attr("name") == 'squareVal') {if(display.val()) buffer = "" + Math.pow(parseFloat(display.val()), 2); updateDisplay(buffer);}
+			else if(c.attr("name") == 'backspaceBtn') {backspaceEntry();}
+			else if(c.attr("name") == 'oneoverx') {if(display.val()) {buffer = "" + 1/parseFloat(display.val()); updateDisplay(buffer);}};
+		});
+	}
 
 	function backspaceEntry(){
-		console.log(buffer);
 		if(!(buffer == "0" || buffer == "") && !isExecuted) {
 			if(buffer[buffer.length-1] == "." ) isDecimal = 0;
 			buffer = buffer.slice(0, buffer.length-1);
@@ -372,7 +341,7 @@ function percentCalcSetup() {
 		var y = form_p.find("input[name='y-val']").val();
 		var result = y * x / 100;
 		form_p.find("#pc-answer").empty();
-		form_p.find("#pc-answer").html("<b style='color:red;'>Answer: </b>" + result);
+		form_p.find("#pc-answer").html("<b style='color:red;'>Answer: </b>" + parseNum(result));
 	}
 
 	function type2(){
@@ -380,7 +349,7 @@ function percentCalcSetup() {
 		var y = form_p.find("input[name='y-val']").val();
 		var result = (y == 0) ? 0 : x / y * 100;
 		form_p.find("#pc-answer").empty();
-		form_p.find("#pc-answer").html("<b style='color:red;'>Answer: </b>" + result);
+		form_p.find("#pc-answer").html("<b style='color:red;'>Answer: </b>" + parseNum(result));
 	}
 
 	function type3(){
@@ -389,6 +358,60 @@ function percentCalcSetup() {
 		var result = (x == 0) ? 0 : (y - x) / x * 100;
 		(result<0) ? (result*=-1, s = 'decrease') : s='increase'
 		form_p.find("#pc-answer").empty();
-		form_p.find("#pc-answer").html("<b style='color:red;'>Answer: </b>" + result + "% " + s + "</b>");
+		form_p.find("#pc-answer").html("<b style='color:red;'>Answer: </b>" + parseNum(result) + "% " + s + "</b>");
 	}
+}
+
+
+function parseNum(valToBeFormated){
+	var gniTotalDigits = 12;
+	var gniPareSize = 12;
+	var valStr = "" + valToBeFormated;
+	if (valStr.indexOf("N")>=0 || (valToBeFormated == 2*valToBeFormated && valToBeFormated == 1+valToBeFormated)) return "Error ";
+	var i = valStr.indexOf("e")
+	if (i>=0){
+		var expStr = valStr.substring(i+1,valStr.length);
+		if (i>11) i=11;  // max 11 digits
+		valStr = valStr.substring(0,i);
+		if (valStr.indexOf(".")<0){
+			valStr += ".";
+		}else{
+			// remove trailing zeros
+			j = valStr.length-1;
+			while (j>=0 && valStr.charAt(j)=="0") --j;
+			valStr = valStr.substring(0,j+1);
+		}
+		valStr += "E" + expStr;
+	}else{
+		var valNeg = false;
+		if (valToBeFormated < 0){
+			valToBeFormated = -valToBeFormated;
+			valNeg = true;
+		}
+		var valInt = Math.floor(valToBeFormated);
+		var valFrac = valToBeFormated - valInt;
+		var prec = gniTotalDigits - (""+valInt).length - 1;	// how many digits available after period
+
+		var mult = " 1000000000000000000".substring(1,prec+2);
+		if ((mult=="")||(mult==" ")){
+			mult = 1;
+		}else{
+			mult = parseInt(mult);
+		}
+		var frac = Math.floor(valFrac * mult + 0.5);
+		valInt = Math.floor(Math.floor(valToBeFormated * mult + .5) / mult);
+		if (valNeg)
+			valStr = "-" + valInt;
+		else
+			valStr = "" + valInt;
+		var fracStr = "00000000000000"+frac;
+		fracStr = fracStr.substring(fracStr.length-prec, fracStr.length);
+		i = fracStr.length-1;
+
+		// remove trailing zeros unless fixed during entry.
+		while (i>=0 && fracStr.charAt(i)=="0") --i;
+		fracStr = fracStr.substring(0,i+1);
+		if (i>=0) valStr += "." + fracStr;
+	}
+	return valStr;
 }
