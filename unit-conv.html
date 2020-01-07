@@ -1,75 +1,75 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<link rel="stylesheet" type="text/css" href="style.css">
-	<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-	<script src="calculator.js"></script>
-	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-	<script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-</head>
-<body>
-	<form id="unit-converter">
-		<ul>
-			<li class="active">Length</li>
-			<li>Temparature</li>
-			<li>Area</li>
-			<li>Volume</li>
-			<li>Weight</li>
-		</ul>
-		<div class="box" id="large">
-			<div class="row">
-				<div class="col-6">
-					<b>From</b>
-					<input type="number" name="from-val">
-					<div class="optionList" id="unit-from"></div>
-				</div>
-				<div class="col-6">
-					<b style="margin-top: 10px">To</b>
-					<input readonly type="number" name="to-val">
-					<div class="optionList" id="unit-to"></div>
-					
-				</div>
-			</div>
-			<div class="row ">
-				<div class="col-md-6 text-center">
-					<div class="result text-center" id="result-box"></div>
-				</div>
-				<div class="col-md-6">
-					<div class="row justify-content-around">
-						<input type="button" name="reset" class="reset col-4" value="RESET">
-						<input type="button" name="convert" value="CONVERT" class="col-4">
-					</div>
-				</div>
-			</div>
-		</div>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 
-		<div class="box" id="small">
-			<div class="row">
-				<div class="col-sm-12 text-center">
-					<div class="text-center" style="font-size: 1.1em; margin-bottom: 4px;" id="result-box"></div>
-				</div>
+<!-- Paste the complete link to style.css in src attribute-->
+<link rel="stylesheet" type="text/css" href="https://rajin98.github.io/JS-Calculators/style.css">
+
+<!-- Paste the complete link to calculator.js in src attribute-->
+<script src="https://rajin98.github.io/JS-Calculators/calculator.js"></script>
+
+<!-- BootStrap & jQuery -->
+<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+<form id="unit-converter">
+	<ul>
+		<li class="active">Length</li>
+		<li>Temparature</li>
+		<li>Area</li>
+		<li>Volume</li>
+		<li>Weight</li>
+	</ul>
+	<div class="box" id="large">
+		<div class="row">
+			<div class="col-6">
+				<b>From</b>
+				<input type="number" name="from-val">
+				<div class="optionList" id="unit-from"></div>
 			</div>
-			<div class="row justify-content-around">
-				<div class="col-3 text-right"><b>Amount</b></div>
-				<input class="col-9" type="number" name="from-val">
+			<div class="col-6">
+				<b style="margin-top: 10px">To</b>
+				<input readonly type="number" name="to-val">
+				<div class="optionList" id="unit-to"></div>
+				
 			</div>
-			<div class="row justify-content-around">
-				<div class="col-3 text-right"><b>From</b></div>
-				<select class="col-9" id="unit-from"></select>
+		</div>
+		<div class="row ">
+			<div class="col-md-6 text-center">
+				<div class="result text-center" id="result-box"></div>
 			</div>
-			<div class="row justify-content-around" style="margin-top: 6px;">
-				<div class="col-3 text-right"><b>To</b></div>
-				<select class="col-9" id="unit-to"></select>
-			</div>
-			<div class="row ">
-				<div class="col-sm-12">
-					<div class="row justify-content-around">
-						<input type="button" name="reset" class="reset col-4" value="CLEAR">
-						<input type="button" name="convert" value="CONVERT" class="col-4">
-					</div>
+			<div class="col-md-6">
+				<div class="row justify-content-around">
+					<input type="button" name="reset" class="reset col-4" value="CLEAR">
+					<input type="button" name="convert" value="CONVERT" class="col-4">
 				</div>
 			</div>
 		</div>
-	</form>
-</body>
-</html>
+	</div>
+
+	<div class="box" id="small">
+		<div class="row">
+			<div class="col-sm-12 text-center">
+				<div class="text-center" style="font-size: 1.1em; margin-bottom: 4px;" id="result-box"></div>
+			</div>
+		</div>
+		<div class="row justify-content-around">
+			<div class="col-3 text-right"><b>Amount</b></div>
+			<input class="col-9" type="number" name="from-val">
+		</div>
+		<div class="row justify-content-around">
+			<div class="col-3 text-right"><b>From</b></div>
+			<select class="col-9" id="unit-from"></select>
+		</div>
+		<div class="row justify-content-around" style="margin-top: 6px;">
+			<div class="col-3 text-right"><b>To</b></div>
+			<select class="col-9" id="unit-to"></select>
+		</div>
+		<div class="row ">
+			<div class="col-sm-12">
+				<div class="row justify-content-around">
+					<input type="button" name="reset" class="reset col-4" value="CLEAR">
+					<input type="button" name="convert" value="CONVERT" class="col-4">
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
