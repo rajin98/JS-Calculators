@@ -21,7 +21,7 @@ input[type=number], select {
     background-color: white;
     /* Text color of the input boxes and dropdown menus*/
     color: #333;
-    padding: 12px 14px;
+    padding: 0 14px;
 }
 
 input[type=button] {
