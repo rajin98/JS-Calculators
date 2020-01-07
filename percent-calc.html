@@ -1,46 +1,52 @@
-<!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" type="text/css" href="style.css">
-	<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-	<script src="calculator.js"></script>
-	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-	<script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<!-- BootStrap & jQuery -->
+<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+<!-- Paste the complete link to style.css in src attribute-->
+<link rel="stylesheet" type="text/css" href="https://rajin98.github.io/JS-Calculators/style.css">
+
+<!-- Paste the complete link to calculator.js in src attribute-->
+<script src="https://rajin98.github.io/JS-Calculators/calculator.js"></script>
+
 </head>
+
 <body>
-	<form class="box" action="" id="percentCalc" name="percentCalc">
-		<div class="row">
-			<div class="col-6 selection">
-				<div><b>Calculation Type</b></div>
-				<select id="calc-type">
-					<option value="1">What is X% of Y</option>
-					<option value="2">X is what percent of Y</option>
-					<option value="3">What % is the increase/decr&shy;ease from X to Y</option>
-				</select>
+<form class="box" action="" id="percentCalc" name="percentCalc">
+	<div class="row">
+		<div class="col-md-6 col-sm-12 selection">
+			<div><b>Calculation Type</b></div>
+			<select id="calc-type">
+				<option value="1">What is X% of Y</option>
+				<option value="2">X is what percent of Y</option>
+				<option value="3">What % is the increase/decr&shy;ease from X to Y</option>
+			</select>
+		</div>
+		<div class="col-md-6 col-sm-12" style="word-wrap: break-word; hyphens: manual;">
+			<div id="text-top" style="margin-top: 5px;"></div>
+			<div id="x-val" class="input-group">
+				<input class="" type="number" name="x-val"/>
 			</div>
-			<div class="col-6" style="word-wrap: break-word; hyphens: manual;">
-				<div id="text-top" style="margin-top: 5px;"></div>
-				<div id="x-val" class="input-group">
-					<input class="" type="number" name="x-val"/>
-				</div>
-				<div id=text-mid></div>
-				<div id="y-val" class="input-group added">
-					<input class="" type="number" name="y-val"/>
-				</div>
-				
+			<div id=text-mid></div>
+			<div id="y-val" class="input-group added">
+				<input class="" type="number" name="y-val"/>
+			</div>
+			
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6 col-sm-12">
+			<div id="pc-answer" class="text-center"></div>
+		</div>
+		<div class="col-md-6 col-sm-12 text-md-right text-sm-center">
+			<div class="row justify-content-around">
+				<input type="button" name="reset" class="reset col-4" value="CLEAR">
+				<input type="button" name="calculate" value="CALCULATE" class="col-4">
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-md-6 col-sm-12">
-				<div id="pc-answer" class="text-center"></div>
-			</div>
-			<div class="col-md-6 col-sm-12 text-md-right text-sm-center">
-				<div class="row justify-content-around">
-					<input type="button" name="reset" class="reset col-4" value="CLEAR">
-					<input type="button" name="calculate" value="CALCULATE" class="col-4">
-				</div>
-			</div>
-		</div>
-	</form>
+	</div>
+</form>
 </body>
 </html>
