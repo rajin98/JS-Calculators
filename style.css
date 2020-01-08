@@ -9,7 +9,7 @@ body {
 
 @media only screen and (max-width: 576px) {
     body{
-        font-size: 12px;
+        font-size: 14px;
     }
 }
 
@@ -41,16 +41,6 @@ input[type=button] {
     padding: 12px 0;
     border: none;
     cursor: pointer;
-}
-
-@media only screen and (max-width: 576px) {
-    input[type=button] {
-        padding: 8px 0;
-        font-size: 1em;
-    }
-    input[type=number], select{
-        padding: 6px 10px 6px;`
-    }
 }
 
 input[type=button]:hover {
