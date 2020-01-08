@@ -236,13 +236,17 @@ function calculatorSetup() {
 			else if(c.attr("name") == 'mem_plus') {if(display.val()) memory += parseFloat(display.val());}
 			else if(c.attr("name") == 'mem_minus') {if(display.val()) memory -= parseFloat(display.val());}
 			else if(c.attr("name") == 'mem_recall') {buffer = memory; display.val(memory);}
-			else if(c.attr("name") == 'percentButton') {if(display.val()) buffer = "" + parseFloat(display.val())/100; updateDisplay(buffer);}
+			else if(c.attr("name") == 'percentButton') {
+				if(value == 0) {if(display.val()) buffer = "" + parseFloat(display.val())/100;}
+				else {buffer = value * parseFloat(display.val())/100;}
+				 updateDisplay(buffer);}
 			else if(c.attr("name") == 'root2') {if(display.val()) buffer = "" + Math.sqrt(parseFloat(display.val())); updateDisplay(buffer);}
 			else if(c.attr("name") == 'piConst') {buffer = "" + Math.PI; updateDisplay(buffer);}
 			else if(c.attr("name") == 'negate') {if(display.val()) buffer = "" + parseFloat(display.val()) * -1; updateDisplay(buffer);}
 			else if(c.attr("name") == 'squareVal') {if(display.val()) buffer = "" + Math.pow(parseFloat(display.val()), 2); updateDisplay(buffer);}
 			else if(c.attr("name") == 'backspaceBtn') {backspaceEntry();}
 			else if(c.attr("name") == 'oneoverx') {if(display.val()) {buffer = "" + 1/parseFloat(display.val()); updateDisplay(buffer);}};
+			
 		});
 	}
 
