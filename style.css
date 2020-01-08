@@ -265,7 +265,7 @@ input[type=button]:hover {
     color: #fff;
     background-color: #333;
     border: 1px solid #ccc;
-    font-size: 100%;
+    font-size: 150%;
     margin: 0;
 }
 
@@ -321,6 +321,9 @@ input[type=button]:hover {
 
 @media only screen and (max-width: 576px){
     .calculatorWrap input.window {
+        font-size: 150%;
+    }
+    .calculatorWrap input.button{
         font-size: 150%;
     }
 
