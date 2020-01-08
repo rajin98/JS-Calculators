@@ -20,11 +20,11 @@ function adapt(argument) {
 	 
 	if(conv.length > 0){
 		for (var i = conv.length - 1; i >= 0; i--) {
-			var width = conv[i].offsetWidth;conv[i].style.paddingBottom = (isMobile || width<596)? "330px":"480px";}
+			var width = conv[i].offsetWidth;conv[i].style.paddingBottom = (isMobile || width<596) ? "350px":"480px";}
 		}
 	if(perc.length > 0){
 		for (var i = perc.length - 1; i >= 0; i--) {
-			var width = perc[i].offsetWidth;perc[i].style.paddingBottom = (width>596)? "260px":"395px";}
+			var width = perc[i].offsetWidth;perc[i].style.paddingBottom = (width>596)? "260px":"380px";}
 		}
 }
 
