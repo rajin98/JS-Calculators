@@ -185,7 +185,7 @@ function unitConvSetup(){
 
 function calculatorSetup() {
 	var isNumber = 0, isDecimal = 0, isOperator = 0, isConstant = 0, isMobile = 0, calWidget = '';
-	isExecuted = 0, buffer = "0", memory = 0; operator = '', value = 0, display = '';
+	isExecuted = 0, buffer = "0", memory = 0; operator = '', value = 0, display = '', val2 = 0;
 	
 	if(jQuery(window).width() <= 576) isMobile = 1;
 	changeLayout();
@@ -233,19 +233,19 @@ function calculatorSetup() {
 			else if(c.hasClass("operator")) enterOperator(c.val());
 			else if(c.attr("name") == 'clearButton') displayClear();
 			else if(c.attr("name") == 'mem_clear') memory = 0;
-			else if(c.attr("name") == 'mem_plus') {if(display.val()) memory += parseFloat(display.val());}
-			else if(c.attr("name") == 'mem_minus') {if(display.val()) memory -= parseFloat(display.val());}
-			else if(c.attr("name") == 'mem_recall') {buffer = memory; display.val(memory);}
+			else if(c.attr("name") == 'mem_plus') {if(display.val()) memory += parseFloat(display.val().replace(/,/g, ''));}
+			else if(c.attr("name") == 'mem_minus') {if(display.val()) memory -= parseFloat(display.val().replace(/,/g, ''));}
+			else if(c.attr("name") == 'mem_recall') {buffer = numberWithCommas(memory); updateDisplay(buffer);}
 			else if(c.attr("name") == 'percentButton') {
-				if(value == 0) {if(display.val()) buffer = "" + parseFloat(display.val())/100;}
-				else {buffer = value * parseFloat(display.val())/100;}
+				if(value == 0) {if(display.val()) buffer = numberWithCommas(parseFloat(display.val().replace(/,/g, ''))/100);}
+				else {buffer = numberWithCommas(value * parseFloat(display.val().replace(/,/g, ''))/100);}
 				 updateDisplay(buffer);}
-			else if(c.attr("name") == 'root2') {if(display.val()) buffer = "" + Math.sqrt(parseFloat(display.val())); updateDisplay(buffer);}
-			else if(c.attr("name") == 'piConst') {buffer = "" + Math.PI; updateDisplay(buffer);}
-			else if(c.attr("name") == 'negate') {if(display.val()) buffer = "" + parseFloat(display.val()) * -1; updateDisplay(buffer);}
-			else if(c.attr("name") == 'squareVal') {if(display.val()) buffer = "" + Math.pow(parseFloat(display.val()), 2); updateDisplay(buffer);}
+			else if(c.attr("name") == 'root2') {if(display.val()) buffer = numberWithCommas(Math.sqrt(parseFloat(display.val().replace(/,/g, '')))); updateDisplay(buffer);}
+			else if(c.attr("name") == 'piConst') {buffer = Math.PI; updateDisplay(buffer);}
+			else if(c.attr("name") == 'negate') {if(display.val()) buffer = numberWithCommas(parseFloat(display.val().replace(/,/g, '')) * -1); updateDisplay(buffer);}
+			else if(c.attr("name") == 'squareVal') {if(display.val()) buffer = "" + numberWithCommas(Math.pow(parseFloat(display.val().replace(/,/g, '')), 2)); updateDisplay(buffer);}
 			else if(c.attr("name") == 'backspaceBtn') {backspaceEntry();}
-			else if(c.attr("name") == 'oneoverx') {if(display.val()) {buffer = "" + 1/parseFloat(display.val()); updateDisplay(buffer);}};
+			else if(c.attr("name") == 'oneoverx') {if(display.val()) {buffer = numberWithCommas(1/parseFloat(display.val().replace(/,/g, ''))); updateDisplay(buffer);}};
 			
 		});
 	}
@@ -266,26 +266,34 @@ function calculatorSetup() {
 			if(buffer == "0") buffer = '';
 			if(c == ".") {isDecimal = 1; if(buffer=='') buffer = "0";}
 			buffer += c;
-			updateDisplay(buffer);
+			updateDisplay(numberWithCommas(parseFloat(buffer)));
 		}
 	}
 
 	function enterOperator(c) {
-		if(isExecuted) {operator = c; isOperator = 1; isExecuted = 0;}
+		if(isExecuted) {
+			console.log(operator + " " + value);
+			if(c == '\u003D') {
+				if(operator == '\u2212') value = value - val2;
+				if(operator == '\u00D7') value = value * val2;
+				if(operator == '\u00F7') (val2 == 0) ? value = "NaN" : value = value / val2;
+				if(operator == '+') value = value + val2;
+			}
+			else {operator = c; isOperator = 1; isExecuted = 0;}}
 		else if(!isOperator) {if(buffer) {value = parseFloat(buffer); buffer = ''; operator = c; isOperator = 1;}}
 		else {
 			if(!buffer) operator = c;
 			else{
-				var val2 = parseFloat(buffer); buffer = '';
+				val2 = parseFloat(buffer); buffer = '';
 				if(operator == '\u2212') value = value - val2;
 				if(operator == '\u00D7') value = value * val2;
 				if(operator == '\u00F7') (val2 == 0) ? value = "NaN" : value = value / val2;
 				if(operator == '+') value = value + val2;
 				if(c == '\u003D') {isOperator = 0; isExecuted = 1;}
-				operator = c;
+				else operator = c;
 			}
 		}
-		updateDisplay(value);
+		updateDisplay(numberWithCommas(value));
 	}
 
 	function updateDisplay(c) {
@@ -350,7 +358,7 @@ function percentCalcSetup() {
 		var y = form_p.find("input[name='y-val']").val();
 		var result = y * x / 100;
 		form_p.find("#pc-answer").empty();
-		form_p.find("#pc-answer").html("<b style='color:red;'>Answer: </b>" + parseNum(result));
+		form_p.find("#pc-answer").html("<b style='color:red;'>Answer: </b>" + parseFloat(result));
 	}
 
 	function type2(){
@@ -358,7 +366,7 @@ function percentCalcSetup() {
 		var y = form_p.find("input[name='y-val']").val();
 		var result = (y == 0) ? 0 : x / y * 100;
 		form_p.find("#pc-answer").empty();
-		form_p.find("#pc-answer").html("<b style='color:red;'>Answer: </b>" + parseNum(result));
+		form_p.find("#pc-answer").html("<b style='color:red;'>Answer: </b>" + parseFloat(result));
 	}
 
 	function type3(){
@@ -367,7 +375,7 @@ function percentCalcSetup() {
 		var result = (x == 0) ? 0 : (y - x) / x * 100;
 		(result<0) ? (result*=-1, s = 'decrease') : s='increase'
 		form_p.find("#pc-answer").empty();
-		form_p.find("#pc-answer").html("<b style='color:red;'>Answer: </b>" + parseNum(result) + "% " + s + "</b>");
+		form_p.find("#pc-answer").html("<b style='color:red;'>Answer: </b>" + parseFloat(result) + "% " + s + "</b>");
 	}
 }
 
@@ -423,4 +431,13 @@ function parseNum(valToBeFormated){
 		if (i>=0) valStr += "." + fracStr;
 	}
 	return valStr;
+}
+
+function numberWithCommas(x) {
+	var ret = x.toString(), d = ret.length;
+	console.log(ret);
+	for (var i = 0; i < ret.length; i++) {if(ret[i] == 'e' || ret[i] == '.') {d = i; break;}}
+	var l = ret.substring(0, d);
+	console.log(l, d, ret.substring(d, ret.length));
+ 	return (l.replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ret.substring(d, ret.length));
 }
