@@ -49,6 +49,8 @@ function unitConvSetup(){
 
 	var form_c = jQuery("#unit-converter");
 	var isMobile = 0;
+	var reallyIsMobile = (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) ? 1 : 0;
+	isMobile = reallyIsMobile;
 
 	var optionClass = '';
 	var menu = form_c.find("ul");
@@ -63,11 +65,14 @@ function unitConvSetup(){
 	menu.find("li").eq(0).click();
 	jQuery(window).resize(function(){
 		var width = jQuery(window).width();
-		if(width > 576 && isMobile) {isMobile = 0; changeLayout(); loadOptions(); doConversion();}
-		if(width <= 576 && !isMobile) {isMobile = 1; changeLayout(); loadOptions(); doConversion();}
+		if(!reallyIsMobile){
+			if(width > 576 && isMobile) {isMobile = 0; changeLayout(); loadOptions(); doConversion();}
+			if(width <= 576 && !isMobile) {isMobile = 1; changeLayout(); loadOptions(); doConversion();}
+		}
 	});
 
 	if(jQuery(window).width() <= 576) isMobile = 1;
+
 	changeLayout();
 	loadOptions();
 
