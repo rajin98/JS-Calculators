@@ -1,6 +1,6 @@
-var calc = document.getElementsById('basic-calc-embed');
-var conv = document.getElementsById('unit-conv-embed');
-var perc = document.getElementsById('percentCalc-embed');
+var calc = document.getElementById('basic-calc-embed');
+var conv = document.getElementById('unit-conv-embed');
+var perc = document.getElementById('percentCalc-embed');
 
 var isMobile = 0;
 if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
