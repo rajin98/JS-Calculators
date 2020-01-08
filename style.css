@@ -6,6 +6,13 @@ body {
     color: #333;
     background-color: #fff;
 }
+
+@media only screen and (max-width: 576px) {
+    body{
+        font-size: 12px;
+    }
+}
+
 p {padding: 3px;}
 
 .align-center{text-align: center;}
@@ -258,7 +265,7 @@ input[type=button]:hover {
     color: #fff;
     background-color: #333;
     border: 1px solid #ccc;
-    font-size: 150%;
+    font-size: 100%;
     margin: 0;
 }
 
