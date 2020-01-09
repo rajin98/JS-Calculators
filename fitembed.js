@@ -15,7 +15,7 @@ window.addEventListener("resize", adapt)
 function adapt(argument) {
 	if(calc.length > 0){
 		for (var i = calc.length - 1; i >= 0; i--) {
-			var width = calc[i].offsetWidth;calc[i].style.paddingBottom = (width>596) ? (width * 0.422 + "px") : (width * 1.2 + "px");}
+			var width = calc[i].offsetWidth;calc[i].style.paddingBottom = (width>596) ? (width * 0.428 + "px") : (width * 1.19 + "px");}
 		}
 	 
 	if(conv.length > 0){
@@ -24,7 +24,7 @@ function adapt(argument) {
 		}
 	if(perc.length > 0){
 		for (var i = perc.length - 1; i >= 0; i--) {
-			var width = perc[i].offsetWidth;perc[i].style.paddingBottom = (width>596)? "260px":"360px";}
+			var width = perc[i].offsetWidth;perc[i].style.paddingBottom = (width>596)? "265px":"345px";}
 		}
 }
 

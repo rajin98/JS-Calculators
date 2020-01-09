@@ -335,25 +335,28 @@ function percentCalcSetup() {
 
 	function loadForm() {
 		type = form_p.find("#calc-type option:selected").val();
-		if(type == "1") {
+		if(type == "2") {
 			form_p.find("#text-top").html("<b>What is</b>");
 			form_p.find("#text-mid").html("<b>of</b>");
-			form_p.find("input[name='x-val']").parent().removeClass("added");
-			form_p.find("input[name='x-val']").parent().append("<span class='input-group-addon'>%</span>");
-		} else if(type == "2") {
+			form_p.find("#x-val .input-group-prepend, #y-val .input-group-prepend").hide();
+			form_p.find("#x-val .input-group-append").show();
+			form_p.find("#x-val .input-group-append .input-group-text").text("%");
+		} else if(type == "3") {
 			form_p.find("#text-top").empty();
-			form_p.find("input[name='x-val']").parent().addClass("added");
-			form_p.find("input[name='x-val']").parent().find("span").remove();
+			form_p.find("#x-val .input-group-prepend, #y-val .input-group-prepend").hide();
+			form_p.find("#x-val .input-group-append").hide();
 			form_p.find("#text-mid").html("<b>is what % of</b>");
 		} else {
-			form_p.find("input[name='x-val']").parent().addClass("added");
-			form_p.find("input[name='x-val']").parent().find("span").remove();
-			form_p.find("#text-top").html("<b>What is the % increase/de&shy;crease from</b>");
+			form_p.find("#x-val .input-group-prepend, #y-val .input-group-prepend").show();
+			form_p.find("#x-val .input-group-prepend .input-group-text").text("Before Wash");
+			form_p.find("#y-val .input-group-prepend .input-group-text").text("After Wash");
+			form_p.find("#x-val .input-group-append").hide();
+			form_p.find("#text-top").html("<b>What is the fabric % increase/de&shy;crease from</b>");
 			form_p.find("#text-mid").html("<b>to</b>");
 		}
 	}
 
-	function type1(){
+	function type2(){
 		var x = form_p.find("input[name='x-val']").val();
 		var y = form_p.find("input[name='y-val']").val();
 		var result = y * x / 100;
@@ -361,7 +364,7 @@ function percentCalcSetup() {
 		form_p.find("#pc-answer").html("<b style='color:red;'>Answer: </b>" + parseFloat(result));
 	}
 
-	function type2(){
+	function type3(){
 		var x = form_p.find("input[name='x-val']").val();
 		var y = form_p.find("input[name='y-val']").val();
 		var result = (y == 0) ? 0 : x / y * 100;
@@ -369,7 +372,7 @@ function percentCalcSetup() {
 		form_p.find("#pc-answer").html("<b style='color:red;'>Answer: </b>" + parseFloat(result));
 	}
 
-	function type3(){
+	function type1(){
 		var x = form_p.find("input[name='x-val']").val();
 		var y = form_p.find("input[name='y-val']").val();
 		var result = (x == 0) ? 0 : (y - x) / x * 100;

@@ -57,48 +57,6 @@ input[type=button]:hover {
 }
 
 /* ============================================ */
-#percentCalc .input-group {
-    position: relative;
-    display: table;
-    border-collapse: separate;
-}
-
-#percentCalc .input-group.added {
-    width: 100%;
-    position: relative;
-    display: table;
-    border-collapse: separate;
-}
-
-#percentCalc .input-group input{
-    padding: 8px 14px 8px;
-    border: 1px solid #ccc;
-    position: relative;
-    z-index: 2;
-    float: left;
-    margin-bottom: 0;
-    display: table-cell;
-    width: 100%;
-}
-
-#percentCalc .input-group-addon {
-    display: table-cell;
-    width: 1%;
-    white-space: nowrap;
-    vertical-align: middle;    
-    padding: 8px 14px 8px;
-    font-size: 14px;
-    font-weight: normal;
-    line-height: 1;
-    /* Text color of % symbol */
-    color: #555;
-    text-align: center;
-    /* Background color of % symbol */
-    background-color: #eee;
-    /* Border color of % symbol */
-    border: 1px solid #ccc;
-    border-left: none;
-}
 
 #percentCalc .selection {
     position: relative;

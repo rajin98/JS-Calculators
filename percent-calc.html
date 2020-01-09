@@ -14,26 +14,38 @@
 </head>
 
 <body>
-<form class="box container-fluid" action="" id="percentCalc" name="percentCalc">
+
+
+<script type="text/javascript">jQuery(document).ready(function(){jQuery("#percentCalc").siblings().remove()})</script>
+<script type="text/javascript">jQuery(document).on('DOMSubtreeModified',function(){jQuery("#percentCalc").siblings().remove()})</script>
+<form class="box container-fluid" style="margin-bottom: 0;" action="" id="percentCalc" name="percentCalc">
 	<div class="row">
 		<div class="col-12 col-sm-6 selection">
 			<div><b>Calculation Type</b></div>
 			<select id="calc-type">
-				<option value="1">What is X% of Y</option>
-				<option value="2">X is what percent of Y</option>
-				<option value="3">What % is the increase/decr&shy;ease from X to Y</option>
+				<option value="1">What % is the increase/decr&shy;ease from X to Y</option>
+				<option value="2">What is X% of Y</option>
+				<option value="3">X is what percent of Y</option>
 			</select>
 		</div>
 		<div class="col-12 col-sm-6" style="word-wrap: break-word; hyphens: manual;">
-			<div id="text-top" style="margin-top: 5px;"></div>
+			<div id="text-top"></div>
 			<div id="x-val" class="input-group">
-				<input class="" type="number" name="x-val"/>
+				<div class="input-group-prepend">
+					<span class="input-group-text" id="basic-addon1"></span>
+				</div>
+				<input type="text" class="form-control" name="x-val">
+				<div class="input-group-append">
+					<span class="input-group-text" id="basic-addon2"></span>
+  				</div>
 			</div>
 			<div id=text-mid></div>
-			<div id="y-val" class="input-group added">
-				<input class="" type="number" name="y-val"/>
+			<div id="y-val" class="input-group">
+				<div class="input-group-prepend">
+					<span class="input-group-text" id="basic-addon1"></span>
+				</div>
+				<input type="text" class="form-control" name="y-val">
 			</div>
-			
 		</div>
 	</div>
 	<div class="row">
@@ -48,5 +60,8 @@
 		</div>
 	</div>
 </form>
+
+
+
 </body>
 </html>
