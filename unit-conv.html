@@ -1,3 +1,6 @@
+<html>
+<head>
+
 <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- BootStrap & jQuery -->
 <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
@@ -8,15 +11,27 @@
 
 <!-- Paste the complete link to calculator.js in src attribute-->
 <script src="calculator.js"></script>
+</head>
+<body>
+<form id="unit-converter" action="">
+	<div class="row no-gutters menu">
+		<div class="col-sm col-4">
+			<div class="active">Length</div>
+		</div>
+		<div class="col-sm col-4">
+			<div>Temparature</div>
+		</div>
+		<div class="col-sm col-4">
+			<div>Area</div>
+		</div>
+		<div class="col-sm col-4">
+			<div>Volume</div>
+		</div>
+		<div class="col-sm col-4">
+			<div>Weight</div>
+		</div>
+	</div>
 
-<form id="unit-converter">
-	<ul>
-		<li class="active">Length</li>
-		<li>Temparature</li>
-		<li>Area</li>
-		<li>Volume</li>
-		<li>Weight</li>
-	</ul>
 	<div class="box container-fluid" id="large">
 		<div class="row">
 			<div class="col-6">
@@ -45,11 +60,7 @@
 	</div>
 
 	<div class="box" id="small">
-		<div class="row">
-			<div class="col-12 col-sm-6 text-center">
-				<div class="text-center" style="font-size: 1.1em; margin-bottom: 4px;" id="result-box"></div>
-			</div>
-		</div>
+		
 		<div class="row justify-content-around">
 			<div class="col-3 text-right"><b>Amount</b></div>
 			<input class="col-9" type="number" name="from-val">
@@ -62,6 +73,11 @@
 			<div class="col-3 text-right"><b>To</b></div>
 			<select class="col-9" id="unit-to"></select>
 		</div>
+		<div class="row">
+			<div class="col-12 col-sm-6 text-center">
+				<div class="text-center" style="font-size: 1.1em; margin-bottom: 4px;" id="result-box"></div>
+			</div>
+		</div>
 		<div class="row ">
 			<div class="col-sm-12">
 				<div class="row justify-content-around">
@@ -72,3 +88,5 @@
 		</div>
 	</div>
 </form>
+</body>
+</html>

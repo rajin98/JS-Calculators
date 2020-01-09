@@ -133,40 +133,41 @@ input[type=button]:hover {
     cursor: default;
 }
 
-#unit-converter > .box {
+#unit-converter .box {
     padding: 20px;
     background-color: #f0f0f0;
     border: 1px solid rgb(206, 206, 206);
     z-index: 1;
 }
 
-#unit-converter > ul {
-    list-style: none;
-    z-index: 2;
-    width: 100%;
-    padding-inline-start: 0px;
-    margin-block-end: -1px;
+@media only screen and (min-width: 576px){
+    #unit-converter .menu {
+        width: 70%;
+        min-width: 570px;
+    }
 }
 
-#unit-converter > ul > li:first-child{
-    margin-left: 0px;
+
+#unit-converter .menu {
 }
 
-#unit-converter > ul > li {
+#unit-converter .menu > div {
+    text-align: center;
     color: #333;
-    margin: 0 0 0 0;
-    border: 1px solid #ccc;
-    background-color: #cfcfcf;
-    color: #333;
-	display: inline-block;
-	padding: 8px 8px;
     cursor: pointer;
     font-weight: 600;
 }
 
-#unit-converter > ul > li.active {
+#unit-converter .menu > div > div {
+    margin-right: 5px;
+    background-color: #ddd;
+    padding: 8px 8px;
+    border: 1px solid #ccc;
+}
+
+#unit-converter .menu > div > div.active {
     background-color: #f0f0f0;
-    border-bottom: 1px solid #f0f0f0;
+/*    border-bottom: 1px solid #f0f0f0;*/
 }
 
 #shrinkage-calculator > .result{
@@ -187,6 +188,9 @@ input[type=button]:hover {
 	}
     .input-group-text{
         width: 96px;
+    }
+    #unit-converter .menu > div > div.active {
+        border-bottom: 1px solid #f0f0f0;
     }
 }
 

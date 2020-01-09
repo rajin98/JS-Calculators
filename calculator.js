@@ -53,16 +53,16 @@ function unitConvSetup(){
 	isMobile = reallyIsMobile;
 
 	var optionClass = '';
-	var menu = form_c.find("ul");
+	var menu = form_c.find(".menu");
 	var last_field = 'from-val';
-	menu.find("li").click(function(){
-		menu.find("li").removeClass("active");
+	menu.find("div > div").click(function(){
+		menu.find("div > div").removeClass("active");
 		jQuery(this).addClass("active");
 		optionClass = jQuery(this).text();
 		if(optionClass=="Temp") optionClass = "Temparature"
 		loadOptions();
 	});
-	menu.find("li").eq(0).click();
+	menu.find("div > div").eq(0).click();
 	jQuery(window).resize(function(){
 		var width = jQuery(window).width();
 		if(!reallyIsMobile){
@@ -98,11 +98,11 @@ function unitConvSetup(){
 
 	function changeLayout(){
 		if(!isMobile){
-			form_c.find('ul li:eq(1)').text('Temparature');
+			form_c.find('.menu div div:eq(1)').text('Temparature');
 			form_c.find('#small').hide();
 			form_c.find('#large').show();
 		} else {
-			form_c.find('ul li:eq(1)').text('Temp');
+			form_c.find('.menu div div:eq(1)').text('Temp');
 			form_c.find('#small').show();
 			form_c.find('#large').hide();
 		}
