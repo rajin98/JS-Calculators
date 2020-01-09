@@ -59,8 +59,14 @@ input[type=button]:hover {
 /* ============================================ */
 
 .input-group-text{
+    display: initial;
+    font-size: 1em;
+    width: 116px;
     color: #000;
     border-radius: 0;
+    padding-left: 0;
+    padding-right: 0;
+    text-align: center;
     background-color: #ddd;
 }
 
@@ -179,6 +185,9 @@ input[type=button]:hover {
 		width: 100%;
 		min-width: initial;
 	}
+    .input-group-text{
+        width: 96px;
+    }
 }
 
 /* ============================================================== */
