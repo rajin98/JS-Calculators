@@ -24,7 +24,7 @@ function adapt(argument) {
 		}
 	if(perc.length > 0){
 		for (var i = perc.length - 1; i >= 0; i--) {
-			var width = perc[i].offsetWidth;perc[i].style.paddingBottom = (width>596)? "265px":"345px";}
+			var width = perc[i].offsetWidth;perc[i].style.paddingBottom = (width>596)? "275px":"345px";}
 		}
 }
 
