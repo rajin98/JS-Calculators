@@ -58,6 +58,12 @@ input[type=button]:hover {
 
 /* ============================================ */
 
+.input-group-text{
+    color: #000;
+    border-radius: 0;
+    background-color: #ddd;
+}
+
 #percentCalc .selection {
     position: relative;
 }
