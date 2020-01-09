@@ -65,13 +65,14 @@ function unitConvSetup(){
 	menu.find("div > div").eq(0).click();
 	jQuery(window).resize(function(){
 		var width = jQuery(window).width();
-		if(!reallyIsMobile){
-			if(width > 576 && isMobile) {isMobile = 0; changeLayout(); loadOptions(); doConversion();}
-			if(width <= 576 && !isMobile) {isMobile = 1; changeLayout(); loadOptions(); doConversion();}
-		}
+		// if(reallyIsMobile){
+		// 	if(width > 576 && isMobile) {isMobile = 0; changeLayout(); loadOptions(); doConversion();}
+		// 	if(width <= 576 && !isMobile) {isMobile = 1; changeLayout(); loadOptions(); doConversion();}
+		// }
 	});
 
-	if(jQuery(window).width() <= 576) isMobile = 1;
+
+	//if(jQuery(window).width() <= 576) isMobile = 1;
 
 	changeLayout();
 	loadOptions();
@@ -96,7 +97,7 @@ function unitConvSetup(){
 		else if(key == 40) jQuery(this).find('.active').next().click();
 	});
 
-	function changeLayout(){
+	function changeLayout() {
 		if(!isMobile){
 			form_c.find('.menu div div:eq(1)').text('Temparature');
 			form_c.find('#small').hide();
@@ -108,7 +109,7 @@ function unitConvSetup(){
 		}
 	}
 
-	function loadOptions(){
+	function loadOptions() {
 		form_c.find('#unit-from, #unit-to').empty();
 		if(isMobile) {
 			for (var key in unitDict[optionClass]) {
@@ -124,7 +125,6 @@ function unitConvSetup(){
 				});
 			}
 		}
-		
 	}
 	function doConversion(){
 		var subDict = unitDict[optionClass];
