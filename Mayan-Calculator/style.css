@@ -1,0 +1,27 @@
+#calculator-block input[type=button] {
+	border: none;
+	padding: 5px;
+	color: #fff;
+	filter: brightness(100%);
+	transition: 0.5s;
+}
+
+#calculator-block input[type=button]:hover {
+	filter: brightness(95%);
+}
+
+#calculator-block input[name=calculate] {
+	background-color: #ffa99d;
+}
+
+#calculator-block input[name=retry] {
+	background-color: #0095eb;
+}
+
+input[name="mother-dob"] .ui-datepicker-calendar, input[name="mother-dob"] .ui-datepicker-month {
+	display: none;
+}
+
+#calculator-block {
+	border: 1px solid #0095eb;
+}
