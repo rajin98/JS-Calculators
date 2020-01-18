@@ -1,21 +1,41 @@
+#calculator-block input[type=text], #calculator-block .form-control.date-picker {
+	border-radius: 10px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	border: 1px solid #334ea3;
+}
+
+.form-control.is-invalid{
+	border-color: #dc3545 !important;
+}
+
 #calculator-block input[type=button] {
+	border-radius: 100px;
 	border: none;
 	padding: 5px;
 	color: #fff;
-	filter: brightness(100%);
 	transition: 0.5s;
 }
 
+#calculator-block input[type=button]:focus{
+	outline: none;
+}
+
 #calculator-block input[type=button]:hover {
-	filter: brightness(95%);
+	background-color: #fff;
+	color: #dc8bb6;
+}
+
+#calculator-block .img-thumbnail{
+	background-color: transparent;
 }
 
 #calculator-block input[name=calculate] {
-	background-color: #ffa99d;
+	background-color: #dc8bb6;
 }
 
 #calculator-block input[name=retry] {
-	background-color: #0095eb;
+	background-color: #334ea3;
 }
 
 input[name="mother-dob"] .ui-datepicker-calendar, input[name="mother-dob"] .ui-datepicker-month {
@@ -23,5 +43,16 @@ input[name="mother-dob"] .ui-datepicker-calendar, input[name="mother-dob"] .ui-d
 }
 
 #calculator-block {
-	border: 1px solid #0095eb;
+	background-color: #edf8fe;
+	border-radius: 20px;
+	padding: 20px;
+/*	border: 1px solid #0095eb;*/
+}
+
+#calculator-block h3{
+	color: #334ea3;
+}
+
+#calculator-block .field-text {
+	line-height: -50%;
 }
