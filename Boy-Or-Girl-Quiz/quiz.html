@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Boy or Girl Quiz</title>
+	<link rel="stylesheet" type="text/css" href="https://cdn.shopify.com/s/files/1/0226/3443/0539/t/4/assets/theme.scss.css?v=9476238449829326098">
+	<link rel="stylesheet" type="text/css" href="https://cdn.shopify.com/s/files/1/0226/3443/0539/t/4/assets/custom.css?v=1254964151346013224">
+	<link rel="stylesheet" type="text/css" href="quiz.css">
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script></script>
+	<script type="text/javascript" src="quiz.js"></script>
+</head>
+<body>
+	<form action="" class="boy-girl-quiz overlay global-border-radius">
+		<div class="container screen-1">
+			<div class="q-1">
+				<div class="row"><h3 class="question">How is your skin looking?</h3></div>
+				<div class="radio-option"><input type="radio" name="q-1" value="1" > Glowing and acne free!</div>
+				<div class="radio-option"><input type="radio" name="q-1" value="-1" /> Acne, acne and more acne!</div>
+			</div>
+			<div class="q-2">
+				<div class="row"><h3 class="question">Is Dad-to-be gaining weight with you?</h3></div>
+				<div class="radio-option"><input type="radio" name="q-2" value="-1" /> No, not so much.</div>
+				<div class="radio-option"><input type="radio" name="q-2" value="1" /> Yep. He is on his way to a Dad Bod.</div>
+			</div>
+			<div class="q-3">
+				<div class="row"><h3 class="question">What does the shape of your baby bump resemble?</h3></div>
+				<div class="radio-option"><input type="radio" name="q-3" value="1" /> Round like a basketball.</div>
+				<div class="radio-option"><input type="radio" name="q-3" value="-1" /> Flatter and looks more like a watermelon.</div>
+			</div>
+			<div class="q-4">
+				<div class="row"><h3 class="question">What is your baby’s heart rate?</h3></div>
+				<div class="radio-option"><input type="radio" name="q-4" value="1" /> Above 140</div>
+				<div class="radio-option"><input type="radio" name="q-4" value="-1" /> At or Below 140</div>
+			</div>
+			<div class="q-5">
+				<div class="row"><h3 class="question">Do you sleep on your right side or left side?</h3></div>
+				<div class="radio-option"><input type="radio" name="q-5" value="-1" /> Right side</div>
+				<div class="radio-option"><input type="radio" name="q-5" value="1" /> Left side</div>
+			</div>
+			<div class="q-6">
+				<div class="row"><h3 class="question">Where are you gaining weight at?</h3></div>
+				<div class="radio-option"><input type="radio" name="q-6" value="1" /> Thighs and Butt</div>
+				<div class="radio-option"><input type="radio" name="q-6" value="-1" /> Midsection</div>
+			</div>
+			<div class="q-7">
+				<div class="row"><h3 class="question">What foods are you craving?</h3></div>
+				<div class="radio-option"><input type="radio" name="q-7" value="1" /> Meat and salty foods</div>
+				<div class="radio-option"><input type="radio" name="q-7" value="-1" /> Sweet treats! Cookies, ice cream, fruit</div>
+			</div>
+			<!-- <div class="q-8">
+				<div class="row"><h3 class="question">How severe is your morning sickness?</h3></div>
+				<div class="radio-option"><input type="radio" name="q-8" value="1" /> Mild or none</div>
+				<div class="radio-option"><input type="radio" name="q-8" value="-1" /> Severe or almost every day</div>
+			</div> -->
+			<div class="form-block mt-3">
+				<div class="row">
+					<div class="col input-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text">NAME</span>
+						</div>
+		  				<input type="text" class="form-control" name="name" />
+					</div>
+				</div>
+				<div class="row">
+					<div class="col input-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text">EMAIL</span>
+						</div>
+		  				<input type="text" class="form-control" name="email" />
+					</div>
+				</div>
+			</div>
+			<div class="row"><button id="view-result" type="button" class="btn btn--primary">View Results</button></div>
+		</div>
+	</form>
+</body>
+</html>
