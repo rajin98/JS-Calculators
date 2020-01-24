@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Pattern Grading Calculator</title>
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script></script>
+	<link rel="stylesheet" type="text/css" href="https://cdn.shopify.com/s/files/1/0284/9854/t/108/assets/styles.scss.css?v=10338266176852993660">
+	<link rel="stylesheet" type="text/css" href="style2.css">
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+	<script type="text/javascript" src="markergrading.js"></script>
+</head>
+<body>
+	<form action="" class="pattern-grading-calculator container border pb-2 w-50" style="background-color: #f0f0f0;">
+		<div class="row text-center mb-2 border-bottom py-1" style="background-color: #ddd;">
+			<div class="col">Pattern Grading Request</div>
+		</div>
+		<div data-screen="1">
+			<div class="row mb-2">
+				<div class="col input-group">
+					<div class="input-group-prepend">
+						<span class="input-group-text" id="style-name">STYLE NAME</span>
+					</div>
+	  				<input type="text" class="form-control" name="style-name" />
+				</div>
+			</div>
+			<div class="row no-gutters mb-1">
+				<div class="col text-center">Base Size</div>=<div class="col text-center">0' Grade</div>
+			</div>
+			<div class="row mb-3">
+				<div class="col pr-1"><input name="base" class="w-100" type="text" placeholder="Enter Size"></div>
+				<div class="col pl-1"><input class="w-100" type="text" placeholder="" readonly></div>
+			</div>
+			<div class="row input-box">
+				<div class="col text-center base-text"></div>
+			</div>
+			<div class="row mb-3">
+				<div class="col"><button type="button" class="w-100 btn btn-secondary clear-btn">CLEAR</button></div>
+			</div>
+			<div class="row mb-1">
+				<div class="col"><button type="button" class="w-100 btn btn-primary next">NEXT &nbsp; <i class="fa fa-arrow-right"></i></button></div>
+			</div>
+		</div>
+		<div data-screen="2" style="display: none;">
+			
+			<div class="row no-gutters mb-1">
+				<div class="col text-center pr-1">1 Size Up</div><div class="col text-center pl-1">Width Grade</div>
+			</div>
+			<div class="row mb-1">
+				<div class="col pr-1"><input name="width-up" class="form-control w-100" type="text"></div>
+				<div class="col pl-1"><input name="width-grade" class="form-control w-100" type="number"></div>
+			</div>
+
+			<div class="row no-gutters mb-1">
+				<div class="col text-center">1 Size Up</div><div class="col text-center">Length Grade</div>
+			</div>
+			<div class="row mb-1">
+				<div class="col pr-1"><input name="length-up" class="form-control w-100" type="text"></div>
+				<div class="col pl-1"><input name="length-grade" class="form-control w-100" type="number"></div>
+			</div>
+
+			<div class="row mb-1">
+				<div class="col pr-1"><button type="button" class="w-100 btn btn-primary next-down"><i class="fa fa-arrow-down"></i> &nbsp; Next Size</button></div>
+				<div class="col pl-1"><button type="button" class="w-100 btn btn-primary next-up">Next Size &nbsp; <i class="fa fa-arrow-up"></i></button></div>
+			</div>
+
+			<div class="row text-center">
+				<div class="col table-head">WIDTH GRADE</div> <div class="col table-head">LENGTH GRADE</div>
+			</div>
+			<div class="row">
+				<div class="col input-box text-center">
+					
+				</div>
+			</div>
+			<div class="row mb-1">
+				<div class="col pr-1"><button type="button" class="w-100 btn btn-secondary clear-down"><i class="fa fa-arrow-down"></i> &nbsp; Clear</button></div>
+				<div class="col pl-1"><button type="button" class="w-100 btn btn-secondary clear-up">Clear &nbsp; <i class="fa fa-arrow-up"></i></button></div>
+			</div>
+
+			<div class="row mb-1">
+				<div class="col"><button type="button" class="w-100 btn btn-primary next">END INPUT</button></div>
+			</div>
+		</div>
+	</form>
+</body>
+</html>
